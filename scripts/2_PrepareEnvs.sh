@@ -11,10 +11,4 @@ outputPath=$BASE_DIR/.env
 
 replacement_string=$(cat "$OUTPUT_DIR/sequencer.mnemonic")
 
-if [[ $(uname) == "Darwin" ]]; then
-  sed -e "s/<MNEMONIC>/$replacement_string/g" "$envfile" > $outputPath
-elif [[ $(uname) == "Linux" ]]; then
-  sed -i "s/<MNEMONIC>/$replacement_string/g" "$envfile" > $outputPath
-else
-  echo "Error: Unknown operating system, expect Mac or Linux"
-fi
+SEDReplaceTo "s/<MNEMONIC>/$replacement_string/g" "$envfile" > $outputPath

@@ -35,3 +35,29 @@ then
     echo "node could not be found, please install it first"
     exit
 fi
+
+SEDReplaceTo() {
+    local os=$(uname)
+    local options=""
+
+    if [[ $os == "Darwin" ]]; then
+        options="-e"
+    else
+        options="-i"
+    fi
+
+    sed $options "$@"
+}
+
+SEDReplaceSelf() {
+    local os=$(uname)
+    local options=""
+
+    if [[ $os == "Darwin" ]]; then
+        options="-i ''"
+    else
+        options="-i"
+    fi
+
+    sed $options "$@"
+}

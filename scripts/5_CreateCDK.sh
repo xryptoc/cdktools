@@ -17,13 +17,13 @@ echo "=============> SequencerAddress: $SequencerAddress"
 echo "=============> AggregatorAddress: $AggregatorAddress"
 
 Escaped_L1Host=$(echo "$L1Host" | sed 's#//#\\/\\/#g')
-sed -e "s/<SequencerAddress>/$SequencerAddress/g; s/<AggregatorAddress>/$AggregatorAddress/g; s/<L1Host>/$Escaped_L1Host/g" "$SCRIPT_DIR/conf/cdk/test.node.config.toml.tpl" > $SRC_DIR/cdk-validium-node/test/config/test.node.config.toml
+SEDReplaceTo "s/<SequencerAddress>/$SequencerAddress/g; s/<AggregatorAddress>/$AggregatorAddress/g; s/<L1Host>/$Escaped_L1Host/g" "$SCRIPT_DIR/conf/cdk/test.node.config.toml.tpl" > $SRC_DIR/cdk-validium-node/test/config/test.node.config.toml
 
 ## FIX docker compose
 if docker compose version > /dev/null 2>&1; then
     echo "Docker Compose is supported as a subcommand."
 else
-    sed -i "" "s/docker compose/docker-compose/g" "$SRC_DIR/cdk-validium-node/test/Makefile"
+    SEDReplaceSelf "s/docker compose/docker-compose/g" "$SRC_DIR/cdk-validium-node/test/Makefile"
 fi
 ## run cdk
 cd $SRC_DIR/cdk-validium-node/test && make run-ethda-sepolia
