@@ -24,7 +24,7 @@ INFURA_PROJECT_ID=ed3476b5d5674cd59be4a198bcf83a1b
 CDKHost=http://192.168.18.183:8123
 
 ## check dependencies
-#git
+# git
 if ! command -v git &> /dev/null
 then
     echo "git could not be found, please install it first"
@@ -42,10 +42,28 @@ then
     echo "node could not be found, please install it first"
     exit
 fi
+# npm
+if ! command -v npm &> /dev/null
+then
+    echo "npm could not be found, please install it first"
+    exit
+fi
 # go
 if ! command -v go &> /dev/null
 then
     echo "go could not be found, please install it first"
+    exit
+fi
+# docker
+if ! command -v docker &> /dev/null
+then
+    echo "docker could not be found, please install it first"
+    exit
+fi
+# docker-compose
+if ! command -v docker-compose &> /dev/null
+then
+    echo "docker-compose could not be found, please install it first"
     exit
 fi
 
