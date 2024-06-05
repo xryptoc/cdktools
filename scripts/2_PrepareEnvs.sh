@@ -3,7 +3,6 @@
 source "$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/0_common.sh"
 
 if [ -f "$BASE_DIR/.env" ]; then
-echo "delete..."
     rm -f $BASE_DIR/.env
 fi
 
