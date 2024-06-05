@@ -4,7 +4,7 @@ source "$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/0_common.sh"
 
 ## pull evmkey
 if [ ! -d "$SRC_DIR/evmkey" ]; then
-    git clone -b v1.0.4 https://github.com/crustio/evmkey $SRC_DIR/evmkey
+    git clone -b v1.0.5 https://github.com/crustio/evmkey $SRC_DIR/evmkey
 fi
 
 ## build evmkey

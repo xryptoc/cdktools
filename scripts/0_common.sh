@@ -24,6 +24,12 @@ INFURA_PROJECT_ID=ed3476b5d5674cd59be4a198bcf83a1b
 CDKHost=http://192.168.18.183:8123
 
 ## check dependencies
+#git
+if ! command -v git &> /dev/null
+then
+    echo "git could not be found, please install it first"
+    exit
+fi
 # jq
 if ! command -v jq &> /dev/null
 then
@@ -34,6 +40,12 @@ fi
 if ! command -v node &> /dev/null
 then
     echo "node could not be found, please install it first"
+    exit
+fi
+# go
+if ! command -v go &> /dev/null
+then
+    echo "go could not be found, please install it first"
     exit
 fi
 
