@@ -1,6 +1,8 @@
-version: "3.3"
+version: "3.5"
+
 services:
     geth:
+        container_name: sepolia-mock
         image: ethereum/client-go:latest
         environment:
             - DEV_PERIOD

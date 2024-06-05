@@ -5,7 +5,7 @@ source "$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/0_common.sh"
 ## stop geth
 if [ $ALWAYS_RESTART_L1 -eq 1 ]; then
   DEV_PERIOD=1 docker-compose -f $SCRIPT_DIR/docker/docker-compose.yml down
-  rm -rf $SCRIPT_DIR/docker/gethData
+  sudo rm -rf $SCRIPT_DIR/docker/gethData
   sleep 1
 fi
 

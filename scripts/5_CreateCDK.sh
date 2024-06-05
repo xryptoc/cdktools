@@ -7,6 +7,24 @@ if [ ! -d "$SRC_DIR/cdk-validium-node" ]; then
     git clone -b ethda https://github.com/crustio/cdk-validium-node $SRC_DIR/cdk-validium-node
 fi
 
+if [ ! -d "$SRC_DIR/cdk-validium-node" ]; then
+    echo "CDK clone fail, exit..."
+    exit
+fi
+
+## build zkevm-node
+cd $SRC_DIR/cdk-validium-node
+rm Dockerfile && cp $BASE_DIR/scripts/docker/Dockerfile.cdk ./Dockerfile && make build-docker
+cd $BASE_DIR
+
+## replace keyd
+if [ -f "$SRC_DIR/cdk-validium-node/test/aggregator.keystore" ]; then
+    cp $OUTPUT_DIR/aggregator.keystore $SRC_DIR/cdk-validium-node/test/aggregator.keystore
+fi
+if [ -f "$SRC_DIR/cdk-validium-node/test/sequencer.keystore" ]; then
+    cp $OUTPUT_DIR/sequencer.keystore $SRC_DIR/cdk-validium-node/test/sequencer.keystore
+fi
+
 ## test.genesis.config.json
 node $SCRIPT_DIR/js/create_cdk_config.js
 

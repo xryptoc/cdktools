@@ -13,8 +13,9 @@ AGGREGATOR_KEYSTORE_NAME=aggregator.keystore
 SEQUENCER_KEYSTORE_NAME=sequencer.keystore
 
 ## L1
-ALWAYS_RESTART_L1=1 ## 0 / 1
-L1Host=http://127.0.0.1:8545
+ALWAYS_RESTART_L1=1      ## 0 / 1
+## sepolia-mock IP
+L1Host=http://172.22.86.46:8545
 
 ## rullop
 INFURA_PROJECT_ID=ed3476b5d5674cd59be4a198bcf83a1b
@@ -38,15 +39,12 @@ fi
 
 SEDReplaceTo() {
     local os=$(uname)
-    local options=""
 
     if [[ $os == "Darwin" ]]; then
-        options="-e"
+        sed -e "$@"
     else
-        options="-i"
+        sed "$@"
     fi
-
-    sed $options "$@"
 }
 
 SEDReplaceSelf() {
